@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.button{
+    width: 121px;
+    height: 23px;
+    float: left;
+    padding-top: 6px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 12px 12px 0 0;
+    text-align: center;
+}
+.button:hover{
+    cursor: pointer;
+}
+#orderstable{
+    width: 500px;
+    border-collapse: collapse;
+}
+td{
+    border: 1px solid black;
+}
+td, th{
+    height: 25px;
+    width: 149px;
+    padding: 5px 0 5px 10px;
+}
+section{
+    margin-top: 40px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.selected{
+    background-color: darkgrey;
+}
+th{
+    border: 1px solid black;
+    background-color: darkgrey;
+    text-align: left;
+    font-weight: normal;
+    font-size: 20px;
+}
+.indicator-image {
+    position: relative;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    display: none;
+}
+#search{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+    border: 2px solid black;
+    width: 260px;
+}
