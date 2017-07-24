@@ -57,3 +57,16 @@ th{
     border: 2px solid black;
     width: 260px;
 }
+nav{
+    float: left;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+nav ul{
+    list-style-type: none;
+    font: 16px Verdana;
+}
+nav p{
+    margin-bottom: 20px;
+    font: 30px serif;
+}
