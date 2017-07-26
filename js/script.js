@@ -35,7 +35,8 @@ var orders = [
             count: 6,
             price: "96",
             moneySign: '$'
-        }
+        },
+        "London"
     ],
     [
         {
@@ -72,7 +73,8 @@ var orders = [
             count: 5,
             price: "145",
             moneySign: '$'
-        }
+        },
+        "Paris"
     ],
     [
         {
@@ -109,7 +111,8 @@ var orders = [
             count: 7,
             price: "789",
             moneySign: '$'
-        }
+        },
+        "New-York"
     ],
     [
         {
@@ -146,7 +149,8 @@ var orders = [
             count: 32,
             price: "654",
             moneySign: '$'
-        }
+        },
+        "Los Angeles"
     ]
 ];
 var needToDrawTHs;
@@ -229,6 +233,9 @@ function drawOrder(order) {
     for (var i = 0; i < order.length; i++) {
         var $tr = $('<tr>');
         var item = order[i];
+        if(typeof item !== 'object'){
+            continue;
+        }
 
         if(i === 0 && needToDrawTHs){
             drawTHs();
@@ -300,6 +307,9 @@ function onSearchInput() {
     var re = new RegExp("^" + text, 'i');
 
     filteredOrder = order.filter(function(item) {
+        if (typeof item != 'object'){
+            return;
+        }
         return re.test(item['name']);
     });
 
