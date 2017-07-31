@@ -150,7 +150,7 @@ var orders = [
             price: "654",
             moneySign: '$'
         },
-        "Los Angeles"
+        "Paris"
     ]
 ];
 var needToDrawTHs;

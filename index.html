@@ -12,7 +12,7 @@
     <p>Menu</p>
     <ul>
         <li><a href="#">Заказы</a></li>
-        <li><a href="#">Карта</a></li>
+        <li><a href="#" onclick="showMap()">Карта</a></li>
     </ul>
 </nav>
 <section>
@@ -22,6 +22,11 @@
         <thead></thead>
         <tbody></tbody>
     </table>
+    <a href="#" onclick="showOrderOnMap()">Показать на карте</a>
+    <div id="map"></div>
 </section>
+<script src ="js/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHCac5x5Eq9LRUFqSYcHBFlygfI9mJxYA"
+        async defer></script>
 </body>
 </html>

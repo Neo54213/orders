@@ -70,3 +70,7 @@ nav p{
     margin-bottom: 20px;
     font: 30px serif;
 }
+#map{
+    height: 600px;
+    display: none;
+}
