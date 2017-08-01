@@ -1,12 +1,14 @@
 var map;
 
-function initMap() {
-    var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+function initMap(orderId) {
+    var city = orders[orderId][orders[orderId].length - 1];
+    var myLatlng = findLatlng(city);
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('ordersMap'), {
         center: myLatlng,
         zoom: 8
     });
+
     var markers = {};
 
     for (var i in orders) {
@@ -17,6 +19,7 @@ function initMap() {
         markers[city].push(orders[i]);
     }
 
+    // Цикл для создания маркеров и всплывающих подсказок
     for (city in markers) {
         myLatlng = findLatlng(city);
 
@@ -27,31 +30,34 @@ function initMap() {
 
         var text = '';
 
+        // Цикл для создания маркеров
         for (var currentOrder in markers[city]) {
             if(currentOrder > 0){
                 text += '<hr>';
             }
 
-            /*for (var j in orders) {
-                if(orders[j] !== markers[city][currentOrder]){
+            for (var key in orders) {
+                if(orders[key] !== markers[city][currentOrder]){
                     continue;
                 }
-                var orderId = j;
+                var orderId = key;
                 break;
             }
 
-            text += 'Заказ №' +(orderId+1) + '<br>';*/
+            text += 'Заказ №' + (+orderId + 1);
+            text += '<br>';
 
-            for (var item in markers[city][currentOrder]) {
-                if(typeof markers[city][currentOrder][item] !== 'object'){
-                    continue;
+            // Цикл с формированием текста для подсказки над маркером
+            for (i = 1; i < markers[city][currentOrder].length; i++) {
+                for (var j = 0; markers[city][currentOrder][j]['id'] !== i; j++) {
+
                 }
 
-                if(markers[city][currentOrder][item]['id'] !== 1){
+                if(i !== 1){
                     text += '<br>';
                 }
 
-                text += markers[city][currentOrder][item]['id'] + ". " + markers[city][currentOrder][item]['name'] + ", " + markers[city][currentOrder][item]['count'] + " штук, " + markers[city][currentOrder][item]['price'] + markers[city][currentOrder][item]['moneySign'];
+                text += markers[city][currentOrder][j]['id'] + ". " + markers[city][currentOrder][j]['name'] + ", " + markers[city][currentOrder][j]['count'] + " штук, " + markers[city][currentOrder][j]['price'] + markers[city][currentOrder][j]['moneySign'];
             }
         }
 
@@ -59,26 +65,23 @@ function initMap() {
             content: '<div>' + text + '</div>'
         });
 
-        google.maps.event.addListener(marker, 'click', function(x) {
+        google.maps.event.addListener(marker, 'click', function(currentMarker, currentInfoWindow) {
             return function() {
-                infoWindow.open(map, marker);
+                currentInfoWindow.open(map, currentMarker);
             }
-        });
+        }(marker, infoWindow));
     }
 }
 
 function showMap() {
-    $('#map').show();
-    initMap();
+    $('#ordersMap').show();
+    showOrderOnTheMap();
 }
 
-function showOrderOnMap() {
+function showOrderOnTheMap() {
     var orderId = $('.button.selected').data('id');
-    city = orders[orderId][1];
-    var myLatlng = findLatlng(city);
-    console.log(myLatlng);
 
-    map.center = myLatlng;
+    initMap(orderId);
 }
 
 function findLatlng(city) {

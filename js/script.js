@@ -161,6 +161,10 @@ $(document).ready(function() {
     drawTabs();
     needToDrawTHs = true;
 
+    $('#showMap').on('click', showMap);
+
+    $('#showOrderOnTheMap').on('click', showOrderOnTheMap);
+
     $('.button').on('click', onButtonClick);
 
     $('#ordertabs').find('.order2').click();
