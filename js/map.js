@@ -12,7 +12,7 @@ function initMap(orderId) {
     var markers = {};
 
     for (var i in orders) {
-        var city = orders[i][orders[i].length - 1];
+        city = orders[i][orders[i].length - 1];
         if(!markers[city]){
             markers[city] = [];
         }
@@ -75,13 +75,17 @@ function initMap(orderId) {
 
 function showMap() {
     $('#ordersMap').show();
-    showOrderOnTheMap();
+    var orderId = $('.button.selected').data('id');
+
+    initMap(orderId);
 }
 
 function showOrderOnTheMap() {
     var orderId = $('.button.selected').data('id');
+    var city = orders[orderId][orders[orderId].length - 1];
 
-    initMap(orderId);
+    var myLatlng = findLatlng(city);
+    map.setCenter(myLatlng);
 }
 
 function findLatlng(city) {
